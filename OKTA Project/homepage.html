@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Travel With Us</title>
+    <link rel="stylesheet" href="style_welcome.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script>
+        function toggleMenu() {
+            document.getElementById("sidebar").classList.toggle("active");
+        }
+    </script>
+</head>
+<body>
+    <div class="header">
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+        <h1>Welcome, <span id="fullName">John Doe</span>!</h1>
+    </div>
+    
+    <div id="sidebar" class="sidebar">
+        <button class="close-btn" onclick="toggleMenu()">×</button>
+        <a href="#">Edit Profile</a>
+        <a href="#">Subscription</a>
+    </div>
+    
+    <div class="welcome-box">
+        <p><b>Username:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> <span id="login">johndoe@example.com</span></p><br>
+        <p><b>Primary Email:&nbsp;&nbsp;</b> <span id="email">johndoe@example.com</span></p><br>
+        <p><b>Mobile:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </b> <span id="mobile">+1234567890</span></p><br>
+        <p><b>City:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </b> <span id="city">New York</span></p><br>
+        <p><b>State:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </b> <span id="state">NY</span></p><br>
+        <p><b>Country Code:&nbsp;&nbsp;</b> <span id="countryCode">US</span></p>
+        <div class="booking-buttons">
+            <button class="book-btn">Book Bus Ticket</button>
+            <button class="book-btn">Book Train Ticket</button>
+            <button class="book-btn">Book Flight Ticket</button>
+        </div>
+    </div>
+</body>
+</html>
