@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Travel With Us</title>
+    <link rel="stylesheet" href="style_welcome.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script>
+        function toggleMenu() {
+            document.getElementById("sidebar").classList.toggle("active");
+        }
+    </script>
+</head>
+
+<body onload="getUser()">
+    <div class="header">
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+        <h1>Welcome, <span id="fullName">John Doe</span>!</h1>
+    </div>
+
+    <div id="sidebar" class="sidebar">
+        <button class="close-btn" onclick="toggleMenu()">×</button>
+        <a href="editprof.html">Edit Profile</a>
+        <a href="#">Subscription</a>
+    </div>
+
+    <div class="welcome-box">
+        <p><b>Username:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> <span
+                id="login">johndoe@example.com</span></p><br>
+        <p><b>Primary Email:&nbsp;&nbsp;</b> <span id="email">johndoe@example.com</span></p><br>
+        <p><b>Mobile:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </b> <span id="mobile">+1234567890</span></p><br>
+        <p><b>City:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </b> <span id="city">New York</span></p><br>
+        <p><b>State:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </b> <span id="state">NY</span></p><br>
+        <p><b>Country Code:&nbsp;&nbsp;</b> <span id="countryCode">US</span></p>
+        <div class="booking-buttons">
+            <button class="book-btn">Book Bus Ticket</button>
+            <button class="book-btn">Book Train Ticket</button>
+            <button class="book-btn">Book Flight Ticket</button>
+        </div>
+    </div>
+    <script>
+    async function getUser() { // Assume username is stored after login
+    const email=localStorage.getItem("email");
+    if (!email) {
+        alert("No username found! Redirecting to login.");
+        window.location.href = "login.html"; // Redirect to login if no username found
+        return;
+    }
+
+    try {
+        const response = await fetch(`http://localhost:5500/user/${email}`);
+        if (!response.ok) {
+            throw new Error("Failed to fetch user details");
+        }
+
+        const userData = await response.json();
+        console.log(userData);
+        // Update welcome page with user details
+        document.getElementById("fullName").textContent = userData.fullName;
+        document.getElementById("login").textContent = userData.email;
+        document.getElementById("email").textContent = userData.email;
+        document.getElementById("mobile").textContent = userData.mobile;
+        document.getElementById("city").textContent = userData.city;
+        document.getElementById("state").textContent = userData.state;
+        document.getElementById("countryCode").textContent = userData.countryCode;
+    } catch (error) {
+        console.error("Error loading user data:", error);
+        alert("Failed to load user details. Please try again.");
+    }
+};
+    </script>
+</body>
+
+</html>
